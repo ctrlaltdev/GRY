@@ -1,4 +1,4 @@
-module github.com/ctrlaltdev/go-redir-yourself
+module github.com/ctrlaltdev/GRY
 
 go 1.18
 

@@ -1,4 +1,4 @@
-_NAME=go-redir-yourself
+_NAME=GRY
 
 compile: 
 	for os in darwin linux; do \

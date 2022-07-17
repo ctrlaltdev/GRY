@@ -12,14 +12,14 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/ctrlaltdev/go-redir-yourself/utils"
+	"github.com/ctrlaltdev/GRY/utils"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
 var (
 	PORT   int
-	FOLDER string = ".redir-yourself"
+	FOLDER string = ".GRY"
 )
 
 func LogMiddleware(next http.Handler) http.Handler {
