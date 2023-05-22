@@ -5,7 +5,7 @@ Simple shorturl service
 ## Install
 
 ```sh
-curl -fSsL ln.0x.5f.info/getGRY | sh
+curl -fSsL ln.0x5f.info/getGRY | sh
 ```
 
 ## Run as a service
