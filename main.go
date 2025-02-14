@@ -66,6 +66,11 @@ func RedirYourself(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func HealthCheck(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
+}
+
 func main() {
 	portStr, portSet := os.LookupEnv("PORT")
 	if portSet {
@@ -86,6 +91,7 @@ func main() {
 
 	r.Use(LogMiddleware)
 
+	r.HandleFunc("/.well-known/health", HealthCheck).Methods("GET", "HEAD")
 	r.HandleFunc("/", RedirYourself).Methods("GET", "HEAD")
 	r.HandleFunc("/{slug:(?:[a-zA-Z0-9_-]+)}", RedirYourself).Methods("GET", "HEAD")
 
