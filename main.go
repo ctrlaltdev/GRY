@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -33,7 +32,7 @@ func GetURL(slug string) (url string, err error) {
 		return "", userDirErr
 	}
 
-	content, fileErr := ioutil.ReadFile(filepath.Join(userDir, FOLDER, slug))
+	content, fileErr := os.ReadFile(filepath.Join(userDir, FOLDER, slug))
 	if fileErr != nil {
 		utils.LogErr(fileErr)
 		return "", fileErr
