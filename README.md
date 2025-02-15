@@ -2,6 +2,16 @@
 
 Simple shorturl service
 
+## Environment Variables
+
+GRY can be configured using the following environment variables:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `GRY_PORT` | `3000` | The port number the service will listen on |
+| `GRY_FOLDER` | `.GRY` | The folder path where redirects will be stored |
+| `GRY_TOTP_SECRET` | - | TOTP secret key required for admin authentication. If not set, a secret will be generated and displayed in the logs (NOT RECOMMENDED FOR PRODUCTION) |
+
 ## Run as a container
 
 ```sh
@@ -75,6 +85,9 @@ export GRY_PORT=8080
 # Change the storage location (default: .GRY)
 export GRY_FOLDER=storage
 
+# Set TOTP secret for admin authentication (required for admin endpoints)
+export TOTP_SECRET=your_secret_here
+
 # Using with docker run
 docker run -d \
   --name gry \
@@ -82,6 +95,7 @@ docker run -d \
   -v gry-data:/storage \
   -e GRY_PORT=8080 \
   -e GRY_FOLDER=storage \
+  -e GRY_TOTP_SECRET=your_secret_here \
   ctrlaltdev/gry:latest
 
 # Using with docker compose
@@ -97,6 +111,7 @@ services:
     environment:
       - GRY_PORT=8080
       - GRY_FOLDER=storage
+      - GRY_TOTP_SECRET=your_secret_here
     restart: unless-stopped
 
 volumes:
@@ -110,5 +125,6 @@ When running as a service, you can add these environment variables to the system
 // ... existing service configuration ...
 Environment=GRY_PORT=8080
 Environment=GRY_FOLDER=storage
+Environment=GRY_TOTP_SECRET=your_secret_here
 // ... rest of service configuration ...
 ```
